@@ -2,8 +2,14 @@ import { NestFactory } from '@nestjs/core';
 import type { Express } from 'express';
 import httpDevServer from 'vavite/http-dev-server';
 import { AppModule } from './app.module';
+import { Logger } from '@nestjs/common';
 
-bootstrap();
+try {
+  bootstrap();
+} catch (error) {
+  Logger.error(error);
+}
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
